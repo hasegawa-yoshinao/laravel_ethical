@@ -12,7 +12,7 @@
                     @foreach($shops as $shop )
                     <div class="w-1/2 p-4">
                     <a href="{{ route('owner.shops.edit', ['shop' => $shop->id ])}}">
-                    <div class="border rouded-md p-4">
+                    <div class="border rounded-md p-4">
                         <div class="mb-4">
                     @if($shop->is_selling)
                       <span class="border p-2 rounded-md bg-green-400 text-white">販売中</span>
