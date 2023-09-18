@@ -25,7 +25,7 @@ class Shopseeder extends Seeder
 
             [
                 'owner_id' => 2,
-                'name' => 'エシカルＡ店',
+                'name' => 'エシカルＢ店',
                 'information' => 'エシカルなアイテムを取り揃えるセレクトショップです。',
                 'filename' => '',
                 'is_selling' =>true
