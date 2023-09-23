@@ -4,7 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Owner;
+use App\Models\shop;
+use App\Models\SecondaryCategory;
+use App\Models\Image;
+
+
+
 
 class Shop extends Model
 {
@@ -21,5 +26,10 @@ class Shop extends Model
     public function owner()
     {
         return $this->belongsTo(Owner::class);
+    }
+
+    public function product()
+    {
+        return $this->hasMany(product::class);
     }
 }
