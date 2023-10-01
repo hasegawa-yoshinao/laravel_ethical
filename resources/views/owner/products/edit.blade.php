@@ -10,6 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                 <x-auth-validation-errors class="mb-4" :errors="$errors" />
+                <x-flash-message status="session('status')" />
                 <form method="post" action="{{ route('owner.products.update', ['product' => $product->id ])}}">
                     @csrf
                     @method('put')
@@ -48,8 +49,8 @@
                             </div>
                             <div class="p-2 w-1/2 mx-auto">
                             <div class="relative flex justify-around">
-                                <div><input type="radio" name="type" value="1" class="mr-2" checked>追加</div>
-                                <div><input type="radio" name="type" value="2" class="mr-2" >削減</div>
+                                <div><input type="radio" name="type" value="{{ \Constant::PRODUCT_LIST['add']}}" class="mr-2" checked>追加</div>
+                                <div><input type="radio" name="type" value="{{ \Constant::PRODUCT_LIST['reduce']}}" class="mr-2" >削減</div>
                             </div>
                         </div>
                             <div class="p-2 w-1/2 mx-auto">
@@ -93,8 +94,8 @@
                             <x-select-image :images="$images" currentId="{{$product->image5}}" currentImage="{{$product->imageFifth->filename ?? ''}}"name="image5" />
                             <div class="p-2 w-1/2 mx-auto">
                             <div class="relative flex justify-around">
-                                <div><input type="radio" name="is_selling" value="1" class="mr-2" @if($product->is_selling === 1){ checked } @endif>販売中</div>
-                                <div><input type="radio" name="is_selling" value="0" class="mr-2" @if($product->is_selling === 0){ checked } @endif>停止中</div>
+                                <div><input type="radio" name="is_selling" value="1" class="mr-2" @if($product->is_selling === 1){ checked } @endif >販売中</div>
+                                <div><input type="radio" name="is_selling" value="0" class="mr-2" @if($product->is_selling === 0){ checked } @endif >停止中</div>
                             </div>
                         </div>
                         <div class="p-2 w-full flex justify-around mt-4">
@@ -103,6 +104,13 @@
                         </div>
                         </div>
                     </form>
+                    <form id="delete_{{$product->id}}" method="post" action="{{ route('owner.products.destroy', ['product' => $product->id ])}}">
+                                @csrf
+                                @method('delete')
+                                <div class="p-2 w-full flex justify-around mt-32">
+                                    <a href="#" data-id="{{ $product->id }}" onclick="deletePost(this)" class="text-white bg-red-400 border-0 py-2 px-4 focus:outline-none hover:bg-red-500 rounded">削除する</a>
+                                </div>
+                            </form>
                 </div>
             </div>
         </div>
@@ -122,5 +130,11 @@
             MicroModal.close(modal); 
             }) 
  })
-</script>
+        function deletePost(e) { 
+        'use strict'; 
+        if (confirm('本当に削除してもいいですか?')) { 
+        document.getElementById('delete_' + e.dataset.id).submit(); 
+        } 
+        } 
+ </script>
 </x-app-layout>

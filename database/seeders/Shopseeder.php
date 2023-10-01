@@ -19,7 +19,7 @@ class Shopseeder extends Seeder
                 'owner_id' => 1,
                 'name' => 'エシカルＡ店',
                 'information' => 'エシカルなアイテムを取り揃えるセレクトショップです。',
-                'filename' => '',
+                'filename' => 'sample1.jpg',
                 'is_selling' =>true
             ],
 
@@ -27,7 +27,7 @@ class Shopseeder extends Seeder
                 'owner_id' => 2,
                 'name' => 'エシカルＢ店',
                 'information' => 'エシカルなアイテムを取り揃えるセレクトショップです。',
-                'filename' => '',
+                'filename' => 'sample2.jpg',
                 'is_selling' =>true
             ],
         
